@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Blog;
 import model.User;
 import service.CRUDOperations;
-import service.ExcelFileStorage;
 import utility.CheckBlogPost;
 
 
@@ -51,6 +50,7 @@ public class BlogController extends HttpServlet {
 		Blog blog=new Blog(title,description,postedOn);
 		System.out.println(title);
 		System.out.println(description);
+		System.out.println(postedOn);
 		
 		blog.setBlogTitle(title);
 		blog.setBlogDescription(description);
@@ -64,8 +64,8 @@ public class BlogController extends HttpServlet {
 
 		if(check) {
 			request.setAttribute("listBlog", listblog);
-//			request.setAttribute("blog", blog);
-//			request.setAttribute("user",user);
+			request.setAttribute("blog", blog);
+			request.setAttribute("user",user);
 			RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/blogView.jsp");
 			rd.forward(request, response);
 		}
